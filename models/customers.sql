@@ -5,7 +5,7 @@ with customers as (
         first_name,
         last_name
 
-    from jaffle_shop_customers
+    from dbt.coned.jaffle_shop_customers
 
 ),
 
@@ -17,7 +17,7 @@ with customers as (
              order_date,
              status
 
-         from jaffle_shop_orders
+         from dbt.coned.jaffle_shop_orders
 
      ),
 

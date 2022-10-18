@@ -1,0 +1,1 @@
+select * from {{ref('usage')}} where TYPE != 'Electric usage'

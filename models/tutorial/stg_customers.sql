@@ -3,4 +3,4 @@ select
     first_name,
     last_name
 
-from dbt.coned.jaffle_shop_customers
+from {{source('tutorial', 'jaffle_shop_customers')}}

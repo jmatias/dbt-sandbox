@@ -1,0 +1,12 @@
+version: 2
+
+
+sources:
+  - name: coned
+    tables:
+      - name: cned_electric_usage
+
+models:
+  - name: usage
+    config:
+      materialized: view

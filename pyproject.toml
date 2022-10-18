@@ -10,6 +10,9 @@ python = "^3.9"
 dbt-databricks = "^1.2.3"
 
 
+[tool.poetry.group.dev.dependencies]
+databricks-cli = "^0.17.3"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

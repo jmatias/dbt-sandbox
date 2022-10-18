@@ -1,7 +1,21 @@
 version: 2
 
+
+
+sources:
+  - name: tutorial
+    schema: tutorial
+    tables:
+      - name: jaffle_shop_customers
+      - name: jaffle_shop_orders
+      - name: stripe_payments
+
+
+
 models:
   - name: customers
+    config:
+      materialized: view
     description: One record per customer
     columns:
       - name: customer_id

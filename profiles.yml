@@ -1,1 +1,11 @@
-/Users/javiermatias-cabrera/.dbt/profiles.yml
+javier-sandbox:
+  target: dev
+  outputs:
+    dev:
+      type: databricks
+      catalog: dbt
+      schema: coned
+      host: '{{ env_var("DATABRICKS_SANDBOX_HOST") }}'
+      http_path: '{{ env_var("DATABRICKS_SANDBOX_HTTP_PATH") }}'
+      threads: 6
+      token: '{{ env_var("DATABRICKS_SANDBOX_TOKEN") }}'

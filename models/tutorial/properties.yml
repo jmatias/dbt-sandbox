@@ -15,7 +15,8 @@ sources:
 models:
   - name: customers
     config:
-      materialized: view
+      tags: ['sql']
+
     description: One record per customer
     columns:
       - name: customer_id
@@ -27,6 +28,8 @@ models:
         description: NULL when a customer has not yet placed an order.
 
   - name: stg_customers
+    config:
+      tags: [ 'sql' ]
     description: This model cleans up customer data
     columns:
       - name: customer_id
@@ -36,6 +39,8 @@ models:
           - not_null
 
   - name: stg_orders
+    config:
+      tags: [ 'sql' ]
     description: This model cleans up order data
     columns:
       - name: order_id

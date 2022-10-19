@@ -2,7 +2,7 @@
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
 name: 'coned'
-profile: 'javier-sandbox'
+profile: 'client-poc'
 version: '1.0.0'
 config-version: 2
 

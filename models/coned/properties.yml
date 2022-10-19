@@ -9,4 +9,10 @@ sources:
 models:
   - name: usage
     config:
+      materialized: table
+      tags: [ 'python' ]
+
+  - name: usage_view
+    config:
       materialized: view
+      tags: [ 'sql' ]

@@ -9,3 +9,14 @@ javier-sandbox:
       http_path: '{{ env_var("DATABRICKS_SANDBOX_HTTP_PATH") }}'
       threads: 6
       token: '{{ env_var("DATABRICKS_SANDBOX_TOKEN") }}'
+
+client-poc:
+  target: dev
+  outputs:
+    dev:
+      type: databricks
+      schema: coned
+      host: '{{ env_var("CLIENT_DATABRICKS_HOST") }}'
+      http_path: '{{ env_var("CLIENT_DATABRICKS_HTTP_PATH") }}'
+      threads: 6
+      token: '{{ env_var("CLIENT_DATABRICKS_TOKEN") }}'

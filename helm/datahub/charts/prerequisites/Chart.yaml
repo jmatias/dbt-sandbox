@@ -12,8 +12,8 @@ dependencies:
     condition: elasticsearch.enabled
   # This chart deploys an enterprise version of neo4j that requires commercial license
   - name: neo4j
-    version: 4.2.2-1
-    repository: https://neo4j-contrib.github.io/neo4j-helm/
+    version: 4.4.12
+    repository: https://helm.neo4j.com/neo4j
     condition: neo4j.enabled
   # This chart deploys a community version of neo4j
   - name: neo4j-community

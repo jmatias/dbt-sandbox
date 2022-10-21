@@ -11,15 +11,6 @@ dependencies:
     repository: https://helm.elastic.co
     condition: elasticsearch.enabled
   # This chart deploys an enterprise version of neo4j that requires commercial license
-  - name: neo4j
-    version: 4.4.12
-    repository: https://helm.neo4j.com/neo4j
-    condition: neo4j.enabled
-  # This chart deploys a community version of neo4j
-  - name: neo4j-community
-    version: 1.2.5
-    repository: https://equinor.github.io/helm-charts/charts/
-    condition: neo4j-community.enabled
   - name: mysql
     version: 9.1.2
     repository: https://charts.bitnami.com/bitnami

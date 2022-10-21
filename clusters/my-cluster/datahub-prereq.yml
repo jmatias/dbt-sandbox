@@ -18,12 +18,20 @@ spec:
   install:
     remediation:
       retries: -1
+    createNamespace: true
+
+
+
   uninstall:
     timeout: 15m
 
+
+
   upgrade:
     remediation:
-      retries: 10
+      retries: -1
+      strategy: rollback
+
 
   values:
 

@@ -8,6 +8,9 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "datahub-gms.labels" . | nindent 4 }}
+    {{- range $key, $val := .Values.ingress.extraLabels }}
+    {{ $key }}: {{ $val }}
+    {{- end }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -39,7 +42,11 @@ spec:
               service:
                 name: {{ .name }}
                 port:
+                {{- if eq .port "use-annotation" }}
                   name: {{ .port }}
+                {{- else }}
+                  number: {{ .port }}
+                {{- end }}
             {{- else }}
             backend:
               serviceName: {{ .name }}

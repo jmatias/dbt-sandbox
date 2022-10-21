@@ -4,6 +4,8 @@
 
 replicaCount: 1
 
+revisionHistoryLimit: 10
+
 image:
   repository: linkedin/datahub-frontend-react
   tag: "head"
@@ -47,9 +49,13 @@ service:
   annotations: {}
     # service.beta.kubernetes.io/aws-load-balancer-internal: "true"
 
+serviceMonitor:
+  create: false
+
 ingress:
-  className: ""
+  # className: ""
   enabled: false
+  extraLabels: {}
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
@@ -61,6 +67,22 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
+
+# OIDC auth based on https://datahubproject.io/docs/authentication/guides/sso/configure-oidc-react
+oidcAuthentication:
+  enabled: false
+  # provider: google/okta/azure  <- choose only one
+  # clientId: your-client-id
+  # clientSecret: your-client-secret
+  # only needed if you would like to store the client secret in secret
+  # clientSecretRef:
+  #   secretRef: <secret-ref>
+  #   secretKey: <secret-key>
+  # only needed if provider is `okta`
+  # oktaDomain: your-okta-domain.com
+
+  # only neede if provider is `azure`
+  # azureTenantId: your-azure-tenant-id
 
 # Extra environment variables
 # This will be appended to the current 'env:' key. You can use any of the kubernetes env
@@ -79,6 +101,12 @@ extraVolumeMounts: []
   #   readOnly: true
 
 extraInitContainers: []
+
+lifecycle:
+  # To add a new user to datahub in JAAS config without mounting the user.props file
+  # postStart:
+  #   exec:
+  #     command: ["/bin/sh", "-c", "echo "test_user:password" >> datahub-frontend/conf/user.props"]
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

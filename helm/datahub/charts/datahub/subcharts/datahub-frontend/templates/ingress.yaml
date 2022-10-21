@@ -8,13 +8,16 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "datahub-frontend.labels" . | nindent 4 }}
+    {{- range $key, $val := .Values.ingress.extraLabels }}
+    {{ $key }}: {{ $val }}
+    {{- end }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
 {{- if .Values.ingress.className }}
-  ingressClassName: {{ .Values.ingress.className }}
+  ingressClassName: {{ .Values.ingress.className | quote }}
 {{- end }}
 {{- if .Values.ingress.tls }}
   tls:
@@ -28,7 +31,7 @@ spec:
 {{- end }}
   rules:
   {{- range .Values.ingress.hosts }}
-    - host: {{ .host }}
+    - host: {{ .host | quote }}
       http:
         paths:
         {{- range .redirectPaths }}
@@ -39,7 +42,11 @@ spec:
               service:
                 name: {{ .name }}
                 port:
+                {{- if eq .port "use-annotation" }}
                   name: {{ .port }}
+                {{- else }}
+                  number: {{ .port }}
+                {{- end }}
             {{- else }}
             backend:
               serviceName: {{ .name }}

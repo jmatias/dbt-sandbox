@@ -8,6 +8,9 @@ elasticsearch:
   # a master node when deploying on a single node Minikube / Kind / etc cluster.
   # antiAffinity: "soft"
 
+  # # If your running a single replica cluster add the following helm value
+  # clusterHealthCheckParams: "wait_for_status=yellow&timeout=1s"
+
   # # Shrink default JVM heap.
   # esJavaOpts: "-Xmx128m -Xms128m"
 
@@ -27,9 +30,6 @@ elasticsearch:
   #   resources:
   #     requests:
   #       storage: 100M
-
-
-
 
 # Official neo4j chart uses the Neo4j Enterprise Edition which requires a license
 neo4j:
@@ -56,7 +56,11 @@ mysql:
     # For better security, add mysql-secrets k8s secret with mysql-root-password, mysql-replication-password and mysql-password
     existingSecret: mysql-secrets
 
-
+postgresql:
+  enabled: false
+  auth:
+    # For better security, add postgresql-secrets k8s secret with postgres-password, replication-password and password
+    existingSecret: postgresql-secrets
 
 cp-helm-charts:
   # Schema registry is under the community license

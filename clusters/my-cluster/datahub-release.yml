@@ -1,0 +1,82 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: datahub
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: ./helm/datahub/charts/datahub
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+
+  interval: 2m
+
+  install:
+    remediation:
+      retries: -1
+  uninstall:
+    timeout: 5m
+  upgrade:
+    remediation:
+      retries: 10
+
+  values:
+
+    datahub-frontend:
+      replicaCount: 2
+
+      enabled: true
+      image:
+        repository: linkedin/datahub-frontend-react
+        tag: "v0.8.40"
+
+      service:
+        type: NodePort
+
+      ingress:
+#        className: alb
+        enabled: true
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: localhost
+        hosts:
+          - host: localhost
+            redirectPaths:
+              - path: /*
+                name: ssl-redirect
+                port: use-annotation
+            paths:
+              - /*
+    #      extraVolumes:
+    #         - name: datahub-users
+    #           secret:
+    #             defaultMode: 0444
+    #             secretName: datahub-users-secret
+    #      extraVolumeMounts:
+    #         - name: datahub-users
+    #           mountPath: /etc/datahub/plugins/frontend/auth/user.props
+    #           subPath: user.props
+#
+
+    datahub-gms:
+      replicaCount: 2
+
+      service:
+        type: NodePort
+
+
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: "datahub-frontend-pdb"
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: datahub-frontend
+
+

@@ -28,6 +28,8 @@ models:
   coned:
     tutorial:
       +schema: tutorial
+    global_sales:
+      +schema: global_sales
 
 seeds:
   coned:

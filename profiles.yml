@@ -3,7 +3,7 @@ javier-sandbox:
   outputs:
     dev:
       type: databricks
-      catalog: dbt
+      catalog: javier
       schema: coned
       host: '{{ env_var("DATABRICKS_SANDBOX_HOST") }}'
       http_path: '{{ env_var("DATABRICKS_SANDBOX_HTTP_PATH") }}'

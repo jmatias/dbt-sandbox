@@ -1,0 +1,1 @@
+select count(*) as total_count from {{source('global_sales', 'transactions')}}

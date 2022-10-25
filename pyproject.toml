@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "coned"
+name = "dbt-sandbox"
 version = "0.1.0"
 description = ""
 authors = ["Javier Matias-Cabrera <jmatias@thoughtworks.com>"]

@@ -3,27 +3,6 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="$APPLICATION_CONFIG_DIR$/scratches/global_sales/cities.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="$APPLICATION_CONFIG_DIR$/scratches/global_sales/retailers.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="$APPLICATION_CONFIG_DIR$/scratches/global_sales/transactions.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/seeds/tutorial/jaffle_shop_customers.csv">
           <value>
             <Attribute>

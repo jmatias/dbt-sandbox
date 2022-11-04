@@ -1,7 +1,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'coned'
+name: 'dbt_sandbox'
 #profile: 'client-poc'
 profile: 'javier-sandbox'
 version: '1.0.0'
@@ -26,11 +26,11 @@ clean-targets: # directories to be removed by `dbt clean`
 
 
 models:
-  coned:
+  dbt_sandbox:
     tutorial:
       +schema: tutorial
 
 seeds:
-  coned:
+  dbt_sandbox:
     tutorial:
       +schema: tutorial

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/coned.iml" filepath="$PROJECT_DIR$/.idea/coned.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dbt-sandbox.iml" filepath="$PROJECT_DIR$/dbt-sandbox.iml" />
     </modules>
   </component>
 </project>

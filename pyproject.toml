@@ -26,6 +26,7 @@ pyspark = "^3.3.0"
 black = {extras = ["d"], version = ">=22.10.0"}
 great-expectations = ">=0.15.27"
 acryl-datahub = {extras = ["dbt"], version = "^0.9.2"}
+pytest = "^7.2.0"
 
 [build-system]
 requires = ["poetry-core"]

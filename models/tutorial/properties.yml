@@ -13,10 +13,10 @@ sources:
 
 
 models:
-  - name: customers
+  - name: customer_latest_order
     config:
       tags: ['sql']
-
+#      materialized: table
     description: One record per customer
     columns:
       - name: customer_id
@@ -27,9 +27,10 @@ models:
       - name: first_order_date
         description: NULL when a customer has not yet placed an order.
 
-  - name: stg_customers
+  - name: customers
     config:
       tags: [ 'sql' ]
+#      materialized: view
     description: This model cleans up customer data
     columns:
       - name: customer_id
@@ -38,9 +39,10 @@ models:
           - unique
           - not_null
 
-  - name: stg_orders
+  - name: orders
     config:
       tags: [ 'sql' ]
+#      materialized: view
     description: This model cleans up order data
     columns:
       - name: order_id
@@ -51,4 +53,4 @@ models:
       - name: status
         tests:
           - accepted_values:
-              values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+              values: [ 'placed', 'shipped', 'completed', 'return_pending', 'returned' ]

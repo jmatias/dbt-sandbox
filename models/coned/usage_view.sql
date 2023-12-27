@@ -1,16 +1,24 @@
-with timetamp_values as (select cast(to_timestamp(start_time, 'HH:mm') as long) as start_value,
-                                cast(to_timestamp(end_time, 'HH:mm') as long)   as end_value,
-                                cast(to_timestamp(DATE, 'MM-dd-yyyy') as long)  as date_value,
-                                USAGE                                           as usage,
-                                UNITS                                           as units
+WITH
+    timetamp_values AS (SELECT
+                            CAST(TO_TIMESTAMP(start_time, 'HH:mm') AS long) AS start_value,
+                            CAST(TO_TIMESTAMP(end_time, 'HH:mm') AS long) AS end_value,
+                            CAST(TO_TIMESTAMP(DATE, 'M/d/yyyy') AS long) AS date_value,
+                            USAGE AS usage,
+                            UNITS AS units
 
-                         from {{ source('coned', 'cned_electric_usage') }}),
+                        FROM
+                            {{ source('coned', 'cned_electric_usage') }}),
 
-    usage as (select cast((start_value + date_value) as timestamp) + (interval 1 minute - interval 1 second) as start_time,
-                     cast((end_value + date_value) as timestamp) + (interval 1 minute - interval 1 second)   as end_time,
-                     usage,
-                     units
-              from timetamp_values)
+    usage AS (SELECT
+                  CAST((start_value + date_value) AS timestamp) +
+                  (INTERVAL 1 MINUTE - INTERVAL 1 millisecond) AS start_time,
+                  CAST((end_value + date_value) AS timestamp) +
+                  (INTERVAL 1 MINUTE - INTERVAL 1 millisecond) AS end_time,
+                  usage,
+                  units
+              FROM
+                  timetamp_values)
 
-select * from usage;
-
+SELECT *
+FROM
+    usage;

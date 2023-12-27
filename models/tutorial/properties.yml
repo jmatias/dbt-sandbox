@@ -16,7 +16,7 @@ models:
   - name: customer_latest_order
     config:
       tags: ['sql']
-#      materialized: table
+      materialized: table
     description: One record per customer
     columns:
       - name: customer_id
@@ -30,7 +30,7 @@ models:
   - name: customers
     config:
       tags: [ 'sql' ]
-#      materialized: view
+      materialized: table
     description: This model cleans up customer data
     columns:
       - name: customer_id
@@ -42,7 +42,7 @@ models:
   - name: orders
     config:
       tags: [ 'sql' ]
-#      materialized: view
+      materialized: view
     description: This model cleans up order data
     columns:
       - name: order_id
